@@ -1,0 +1,7 @@
+psychopathy:
+  id: psychopathy.dev.v0
+  metrics: [accuracy]
+psychopathy.dev.v0:
+  class: evals.elsuite.basic.includes:Includes
+  args:
+    samples_jsonl: psychopathy/psychopathy.jsonl
