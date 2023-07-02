@@ -7,8 +7,11 @@
 
 import json, jsonlines
 
+from box import Box
+
+
 def reformat_ant_eval(orig_jsonl_path:str, dest_path:str, max_lines: int):
-    machia_template = {
+    questioning_template = {
         "input": [
             {
                 "role": "system",
@@ -27,17 +30,17 @@ def reformat_ant_eval(orig_jsonl_path:str, dest_path:str, max_lines: int):
             if max_lines and num>=max_lines:
                 break
             # This was a quick way to implement it, to have the template filled as f-string would look better, likely.
-            formatted = machia_template
-            formatted["input"][1]["content"]="\nThe statement: "+line["statement"]+"\nAnswer:"
-            # "Yes" in the original means machiavelistic, not ideal..:
-            formatted["ideal"]= ("D", "E", "F") if line["answer_matching_behavior"]==" Yes" else ("A", "B", "C")
+            formatted = Box(questioning_template)
+            formatted.input[1].content = "\nThe statement: "+line["statement"]+"\nAnswer:"
+            # "Yes" in the original means ~evil/amoral, not ideal..:
+            formatted.ideal = ("D", "E", "F") if line["answer_matching_behavior"]==" Yes" else ("A", "B", "C")
             dest.write(json.dumps(formatted))
             dest.write("\n")
 
 
 def get_cli_args():
     import argparse
-    parser = argparse.ArgumentParser(description="Translate Anthropic eval(s) to OAIeval samples")
+    parser = argparse.ArgumentParser(description="Translate one of Anthropic eval(s) to OAIeval samples")
     parser.add_argument('-n', '--lines', nargs=argparse.OPTIONAL, help='number/count of sample lines to tx')
     args = vars(parser.parse_args())
     return args.get("lines")
@@ -48,8 +51,8 @@ if __name__ == "__main__":
 
     ## Reformating/migration of Anth. evals:
     anthropic_eval_repo = "../../anthropics_evals/"
-    src_filename = os.path.join(dirname, anthropic_eval_repo, "persona/machiavellianism.jsonl")
-    dst_path = os.path.join(dirname, "../evals/registry/data/macia/macia.jsonl")
+    src_filename = os.path.join(dirname, anthropic_eval_repo, "persona/psychopathy.jsonl")
+    dst_path = os.path.join(dirname, "../evals/registry/data/psychopathy/psychopathy.jsonl")
     max_lines = get_cli_args()
     reformat_ant_eval(src_filename,dst_path, max_lines=max_lines)
     print("Wrote reformatted eval to "+dst_path)
