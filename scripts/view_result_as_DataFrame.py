@@ -85,3 +85,12 @@ def display_outs():
 ######### // End of one of doubt (maybe not useful code) ##############
 ########################################################################
 
+if __name__ == "__main__":
+    import os
+    dirname = os.path.dirname(__file__)
+
+    src_filename = os.path.join(dirname, "../output/psycho-ada-seed0.jsonl")
+    df = load_result_to_DataFrame(src_filename)
+    print(df.to_string())
+    df.to_clipboard()
+    print("Loaded to clipboard: "+src_filename)

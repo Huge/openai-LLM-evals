@@ -1,0 +1,7 @@
+psychopathy:
+  id: narcissism.dev.v0
+  metrics: [accuracy]
+narcissism.dev.v0:
+  class: evals.elsuite.basic.includes:Includes
+  args:
+    samples_jsonl: narcissism/narcissism.jsonl
