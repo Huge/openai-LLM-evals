@@ -1,0 +1,7 @@
+extraversion:
+  id: extraversion.dev.v0
+  metrics: [accuracy]
+extraversion.dev.v0:
+  class: evals.elsuite.basic.includes:Includes
+  args:
+    samples_jsonl: extraversion/extraversion.jsonl
