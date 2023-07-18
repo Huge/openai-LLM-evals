@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
     ## Reformating/migration of Anth. evals:
     anthropic_eval_repo = "../../anthropics_evals/"
-    character_trait = "openness"
+    character_trait = "neuroticism"
     input_set = character_trait+".jsonl"
     src_filename = os.path.join(dirname, anthropic_eval_repo, "persona", input_set)
     dst_dir = os.path.join(dirname, "../evals/registry/data",character_trait)

@@ -1,0 +1,7 @@
+neuroticism:
+  id: neuroticism.dev.v0
+  metrics: [accuracy]
+neuroticism.dev.v0:
+  class: evals.elsuite.basic.includes:Includes
+  args:
+    samples_jsonl: neuroticism/neuroticism.jsonl
