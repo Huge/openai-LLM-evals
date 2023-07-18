@@ -1,0 +1,7 @@
+agreeableness:
+  id: agreeableness.dev.v0
+  metrics: [accuracy]
+agreeableness.dev.v0:
+  class: evals.elsuite.basic.includes:Includes
+  args:
+    samples_jsonl: agreeableness/agreeableness.jsonl
