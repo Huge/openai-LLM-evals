@@ -1,0 +1,7 @@
+openness:
+  id: openness.dev.v0
+  metrics: [accuracy]
+openness.dev.v0:
+  class: evals.elsuite.basic.includes:Includes
+  args:
+    samples_jsonl: openness/openness.jsonl

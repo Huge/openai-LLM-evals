@@ -32,8 +32,10 @@ def reformat_ant_eval(orig_jsonl_path:str, dest_path:str, max_lines: int):
             # This was a quick way to implement it, to have the template filled as f-string would look better, likely.
             formatted = Box(questioning_template)
             formatted.input[1].content = "\nThe statement: "+line["statement"]+"\nAnswer:"
-            # "Yes" in the original means ~evil/amoral, not ideal..:
-            formatted.ideal = ("D", "E", "F") if line["answer_matching_behavior"]==" Yes" else ("A", "B", "C")
+            # # "Yes" in the original means ~evil/amoral, not ideal..:
+            # formatted.ideal = ("D", "E", "F") if line["answer_matching_behavior"]==" Yes" else ("A", "B", "C")
+            # Some neutral are fine:
+            formatted.ideal = ("A", "B", "C") if line["answer_matching_behavior"]==" Yes" else ("D", "E", "F")
             dest.write(json.dumps(formatted))
             dest.write("\n")
 
@@ -51,7 +53,7 @@ if __name__ == "__main__":
 
     ## Reformating/migration of Anth. evals:
     anthropic_eval_repo = "../../anthropics_evals/"
-    character_trait = "narcissism"
+    character_trait = "openness"
     input_set = character_trait+".jsonl"
     src_filename = os.path.join(dirname, anthropic_eval_repo, "persona", input_set)
     dst_dir = os.path.join(dirname, "../evals/registry/data",character_trait)
