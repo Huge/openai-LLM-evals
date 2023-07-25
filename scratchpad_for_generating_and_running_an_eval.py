@@ -8,6 +8,11 @@
 from scripts.generate_machiavellianism_samples_homegrown_in_brno import generate_machi_fast, write_list_to_jsonl
 from scripts.view_result_as_DataFrame import load_result_to_DataFrame
 
+def datei():
+    import subprocess
+
+    # Execute the 'date -I' command and capture its output
+    return subprocess.check_output(['date', '-I']).decode().strip()
 
 
 if __name__ == "__main__":
@@ -32,8 +37,9 @@ if __name__ == "__main__":
     #Todo from sys.exec(..) #with same path?.?
     # os.system("echo 'shell sees key' $OPENAI_API_KEY") # seems ^it could work well
     from evals.cli.oaieval import main
+
+    out_path = f"./output/machi_brno_05_{datei()}.jsonl"#record_path
     import sys
-    out_path = "./output/machi_brno_04.jsonl"
     sys.argv.append(f"--record_path={out_path}")
     main()
 

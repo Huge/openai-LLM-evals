@@ -173,7 +173,7 @@ if __name__ == "__main__":
     import os
     dirname = os.path.dirname(__file__)
     if not (dst_path := get_cli_args()):
-       dst_path = os.path.join(dirname, "./evals/registry/data/macia/macia_our_brno_generated.jsonl")
+       dst_path = os.path.join(dirname, "../evals/registry/data/machiavellianism/macia_our_brno_generated.jsonl")
 
     ## Generation of eval lines:
     brno_gen_machi= generate_machi_fast()
