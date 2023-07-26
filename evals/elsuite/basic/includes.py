@@ -7,6 +7,7 @@ from evals.elsuite import utils
 
 
 class Includes(evals.Eval):
+    temperature = 0
     def __init__(
         self,
         completion_fns: list[CompletionFn],
@@ -28,6 +29,7 @@ class Includes(evals.Eval):
         prompt = sample["input"]
         result = self.completion_fn(
             prompt=prompt,
+            temperature=self.temperature
         )
         sampled = result.get_completions()[0]
 

@@ -110,7 +110,7 @@ class Registry:
 
         n_ctx = n_ctx_from_model_name(name)
 
-        if is_chat_model(name):
+        if is_chat_model(name) or name.startswith("/"):
             return OpenAIChatCompletionFn(model=name, n_ctx=n_ctx)
         elif name in self.api_model_ids:
             return OpenAICompletionFn(model=name, n_ctx=n_ctx)
