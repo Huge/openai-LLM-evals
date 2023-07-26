@@ -20,27 +20,27 @@ if __name__ == "__main__":
     dirname = os.path.dirname(__file__)
 
     ## Reformating/migration of Anth. evals:
-    # anthropic_eval_repo = "../anthropics_evals/"
-    # src_filename = os.path.join(dirname, anthropic_eval_repo, "persona/machiavellianism.jsonl")
-    # dst_path = os.path.join(dirname, "./evals/registry/data/macia/macia.jsonl")
-    # reformat_ant_eval(src_filename,dst_path, max_lines=50)
-    # print("Wrote reformatted eval to "+dst_path)
+    # scripts.convert_anthropic_samples.reformat_ant_eval best run from that file.
 
     ## Or reformatting our own funk:
-    dst_path = os.path.join(dirname, "./evals/registry/data/macia/macia_our_brno_generated.jsonl")
-    write_list_to_jsonl(generate_machi_fast(), dst_path)
-    print("Composed/formatted our new eval to "+dst_path)
-    # os.system(f"code {dst_path}") # for inspection
-
+    # scripts.generate_machiavellianism_samples_homegrown_in_brno.write_list_to_jsonl best run from that file.
 
     ## Running the generated eval:
     #Todo from sys.exec(..) #with same path?.?
     # os.system("echo 'shell sees key' $OPENAI_API_KEY") # seems ^it could work well
     from evals.cli.oaieval import main
 
-    out_path = f"./output/machi_brno_05_{datei()}.jsonl"#record_path
     import sys
+    ## completion_fn eval --args  #hopefully
+    # model = "text-davinci-003" # AKA completion_fn
+    # model = "text-curie-001" # AKA completion_fn
+    model = "davinci-instruct-beta" # AKA completion_fn
+    eval_name = "maciavalism"
+    sample_count = 100
+    sys.argv += f"{model} {eval_name} --seed=0 --max_samples={sample_count}".split()
+    out_path = f"./output/{eval_name}_model_{model}_{sample_count}_samples_{datei()}.jsonl"#record_path
     sys.argv.append(f"--record_path={out_path}")
+    print(f"Starting {sys.argv}")
     main()
 
 

@@ -53,8 +53,8 @@ if __name__ == "__main__":
     import os
     dirname = os.path.dirname(__file__)
 
-    ## Reformating/migration of Anth. evals:
-    anthropic_eval_repo = "../../anthropics_evals/"
+    ## Reformating/migration of Anthropic evals:
+    anthropic_eval_repo = "../../anthropics_evals/" # supposes you have clonned https://github.com/anthropics/evals there
     dark_triad_traits = "machiavellianism", "psychopathy","narcissism"
     big_5_traits = "extraversion", "openness", "neuroticism", "agreeableness", "conscientiousness"
     def generate_trait_eval(character_trait, revert_valence = False):
